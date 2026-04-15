@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Referencia Visual Médica — Para IA Diagnóstica</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#faf9f6;--card:#fff;--text:#1a1a1a;--muted:#6a6a6a;--border:#e2dfd8;--red:#c0392b;--red-l:#fdf0ef;--blue:#1a5276;--blue-l:#eaf1f8;--green:#1e8449;--green-l:#eafaf1;--amber:#b7770d;--amber-l:#fef9e7;--purple:#6c3483;--purple-l:#f5eef8;--r:10px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.65}
+/* HEADER */
+header{background:#12122a;color:#fff;padding:3rem 2rem 2.5rem;text-align:center;border-bottom:3px solid var(--red)}
+header h1{font-family:'Libre Baskerville',serif;font-size:2.2rem;font-weight:700;margin-bottom:.6rem;color:#f0f0f0}
+header p{color:#9090b8;font-size:.97rem;max-width:640px;margin:0 auto 1.4rem}
+.disc{background:rgba(192,57,43,.18);border:1px solid rgba(192,57,43,.45);border-radius:6px;padding:.65rem 1.2rem;font-size:.83rem;color:#ffcdd2;max-width:680px;margin:0 auto}
+/* NAV */
+nav{background:#fff;border-bottom:1px solid var(--border);padding:.6rem 1.5rem;display:flex;gap:.45rem;flex-wrap:wrap;justify-content:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+nav a{font-size:.78rem;font-weight:500;color:var(--muted);text-decoration:none;padding:.3rem .8rem;border-radius:20px;border:1px solid var(--border);transition:all .18s;white-space:nowrap}
+nav a:hover{background:#12122a;color:#fff;border-color:#12122a}
+/* MAIN */
+main{max-width:1380px;margin:0 auto;padding:2rem 1.5rem 5rem}
+/* SECTION */
+.sec{margin-bottom:3.5rem}
+.sec-head{display:flex;align-items:center;gap:.7rem;margin-bottom:1.4rem;padding-bottom:.7rem;border-bottom:2px solid var(--border)}
+.sec-ico{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.sec-head h2{font-family:'Libre Baskerville',serif;font-size:1.42rem}
+.sec-head small{display:block;font-size:.8rem;color:var(--muted);margin-top:2px}
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:1.2rem}
+/* CARD */
+.card{background:var(--card);border-radius:var(--r);border:1px solid var(--border);overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.06);transition:transform .18s,box-shadow .18s}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.11)}
+/* IMAGE WRAPPER — fixed height, centres image, never stretches */
+.img-wrap{width:100%;height:200px;overflow:hidden;background:#edeae4;display:flex;align-items:center;justify-content:center}
+.img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .3s}
+.img-wrap img[loading]{opacity:0}
+.img-wrap img.loaded{opacity:1}
+/* CARD BODY */
+.cb{padding:1rem 1.1rem 1.1rem}
+.tag{display:inline-block;font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;padding:.18rem .55rem;border-radius:4px;margin-bottom:.45rem}
+.t-red{background:var(--red-l);color:var(--red)}.t-blue{background:var(--blue-l);color:var(--blue)}.t-green{background:var(--green-l);color:var(--green)}.t-amber{background:var(--amber-l);color:var(--amber)}.t-purple{background:var(--purple-l);color:var(--purple)}
+.ctitle{font-size:.93rem;font-weight:600;margin-bottom:.3rem;line-height:1.4}
+.cdesc{font-size:.8rem;color:var(--muted);line-height:1.55;margin-bottom:.55rem}
+.pills{display:flex;flex-wrap:wrap;gap:.28rem;margin-top:.4rem}
+.pill{font-size:.68rem;padding:.12rem .5rem;border-radius:20px;background:var(--bg);border:1px solid var(--border);color:var(--muted)}
+.urg{display:flex;align-items:center;gap:.38rem;font-size:.73rem;font-weight:500;margin-top:.65rem;padding-top:.6rem;border-top:1px solid var(--border)}
+.dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.u-hi .dot{background:#e74c3c}.u-hi{color:#c0392b}
+.u-md .dot{background:#f39c12}.u-md{color:#9a7d0a}
+.u-lo .dot{background:#27ae60}.u-lo{color:#1e8449}
+/* ALERT */
+.alert{background:#fff0f0;border:1.5px solid #e74c3c;border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.4rem 0;display:flex;gap:.9rem;align-items:flex-start}
+.alert .ico{font-size:1.4rem;flex-shrink:0}
+.alert h3{font-size:.9rem;font-weight:600;color:#c0392b;margin-bottom:.3rem}
+.alert p{font-size:.8rem;color:#922b21;line-height:1.5}
+/* TIP */
+.tip{background:var(--blue-l);border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:.9rem 1.1rem;margin:1.4rem 0;font-size:.85rem;color:var(--blue)}
+/* FOOTER */
+footer{background:#12122a;color:#7070a0;text-align:center;padding:2rem;font-size:.8rem;line-height:1.9}
+footer strong{color:#a0a0cc}
+@media(max-width:560px){header h1{font-size:1.6rem}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Referencia Visual Médica Completa</h1>
+  <p>Guía visual de síntomas, enfermedades y condiciones clínicas para diagnóstico asistido por IA — describe lo que ves y obtén orientación médica</p>
+  <div class="disc">⚕️ Recurso educativo para entrenamiento de IA. No reemplaza la consulta médica. Emergencias: <strong>112</strong></div>
+</header>
+
+<nav>
+  <a href="#piel">🔴 Piel</a>
+  <a href="#inflamacion">🟡 Inflamación</a>
+  <a href="#ojos">👁️ Ojos</a>
+  <a href="#boca">🦷 Boca/ORL</a>
+  <a href="#respiratorio">🫁 Respiratorio</a>
+  <a href="#huesos">🦴 Huesos</a>
+  <a href="#abdomen">🟢 Abdomen</a>
+  <a href="#neurologico">🧠 Neurológico</a>
+  <a href="#cardiovascular">❤️ Cardio</a>
+  <a href="#pediatrico">👶 Pediátrico</a>
+  <a href="#endocrino">💉 Endocrino</a>
+  <a href="#infectologia">🦠 Infecciones</a>
+  <a href="#urgencias">🚨 Urgencias</a>
+</nav>
+
+<main>
+
+<!-- ══════════════════════════════════════════════ PIEL -->
+<section class="sec" id="piel">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:#fdf0ef">🔴</div>
+    <div><h2>Enfermedades de la Piel</h2><small>Dermatitis, infecciones, erupciones, tumores y lesiones cutáneas</small></div>
+  </div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/psoriasis/psoriasis-011.jpg" alt="Psoriasis en placas" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Psoriasis</span>
+        <div class="ctitle">Psoriasis en Placas</div>
+        <div class="cdesc">Placas rojizas cubiertas de escamas plateadas. Autoinmune crónica. Codos, rodillas, cuero cabelludo y espalda baja. Puede asociar artritis psoriásica.</div>
+        <div class="pills"><span class="pill">Escamas plateadas</span><span class="pill">Picor</span><span class="pill">Piel seca</span><span class="pill">Articulaciones</span></div>
+        <div class="urg u-md"><span class="dot"></span>Dermatólogo — tratamiento crónico</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/dermatitis/eczema-hand-001.jpg" alt="Eccema en mano" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-amber">Eccema</span>
+        <div class="ctitle">Dermatitis Atópica (Eccema)</div>
+        <div class="cdesc">Inflamación crónica con picor intenso, enrojecimiento y piel agrietada. Manos, codos y fosa poplítea. Frecuente en atópicos con asma o rinitis.</div>
+        <div class="pills"><span class="pill">Picor crónico</span><span class="pill">Piel agrietada</span><span class="pill">Enrojecimiento</span></div>
+        <div class="urg u-lo"><span class="dot"></span>Emolientes — corticoides tópicos</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/viral/herpes-zoster-001.jpg" alt="Herpes zóster culebrilla" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Viral</span>
+        <div class="ctitle">Herpes Zóster (Culebrilla)</div>
+        <div class="cdesc">Erupción vesiculosa dolorosa en banda unilateral siguiendo un dermatoma. Reactivación del virus varicela-zóster. Riesgo de neuralgia postherpética.</div>
+        <div class="pills"><span class="pill">Dolor ardiente</span><span class="pill">Ampollas en banda</span><span class="pill">Unilateral</span></div>
+        <div class="urg u-hi"><span class="dot"></span>Antivirales en primeras 72h</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/bacterial/impetigo-009.jpg" alt="Impétigo costras" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1567593810070-7a3d471af022?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Bacteriana</span>
+        <div class="ctitle">Impétigo</div>
+        <div class="cdesc">Infección bacteriana superficial con costras amarillentas características "en miel de abeja". Muy contagiosa. Frecuente en niños. Estafilococo y estreptococo.</div>
+        <div class="pills"><span class="pill">Costras doradas</span><span class="pill">Vesículas</span><span class="pill">Muy contagioso</span></div>
+        <div class="urg u-hi"><span class="dot"></span>Antibióticos tópicos u orales</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/acne/acne-face-002.jpg" alt="Acné vulgar" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-amber">Acné</span>
+        <div class="ctitle">Acné Vulgar</div>
+        <div class="cdesc">Obstrucción e inflamación del folículo pilosebáceo. Comedones (puntos negros/blancos), pápulas, pústulas y nódulos quísticos. Grados I-IV según severidad.</div>
+        <div class="pills"><span class="pill">Comedones</span><span class="pill">Pústulas</span><span class="pill">Nódulos</span><span class="pill">Cicatrices</span></div>
+        <div class="urg u-lo"><span class="dot"></span>Retinoide tópico — isotretinoína si grave</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/rosacea/rosacea-003.jpg" alt="Rosácea facial" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-amber">Rosácea</span>
+        <div class="ctitle">Rosácea Facial</div>
+        <div class="cdesc">Enrojecimiento crónico centrofacial con pápulas, pústulas y telangiectasias. Desencadenantes: calor, alcohol, sol, picantes, estrés emocional.</div>
+        <div class="pills"><span class="pill">Eritema facial</span><span class="pill">Telangiectasias</span><span class="pill">Pústulas</span></div>
+        <div class="urg u-lo"><span class="dot"></span>Metronidazol tópico — fotoprotección</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/dermatitis/cellulitis-001.jpg" alt="Celulitis infecciosa pierna" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Bacteriana</span>
+        <div class="ctitle">Celulitis Infecciosa</div>
+        <div class="cdesc">Infección bacteriana de dermis y tejido subcutáneo. Piel caliente, roja, hinchada y dolorosa con borde eritematoso progresivo. Puerta de entrada: herida o grieta.</div>
+        <div class="pills"><span class="pill">Calor local</span><span class="pill">Fiebre</span><span class="pill">Borde progresivo</span></div>
+        <div class="urg u-hi"><span class="dot"></span>Antibióticos sistémicos — marcar borde</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/reactions/urticaria-001.jpg" alt="Urticaria habones" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1561736778-92e52a7769ef?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-amber">Alérgica</span>
+        <div class="ctitle">Urticaria</div>
+        <div class="cdesc">Ronchas elevadas rosadas de aparición súbita que migran en horas. Reacción alérgica o idiopática. Evaluar si se acompaña de angioedema o disnea.</div>
+        <div class="pills"><span class="pill">Habones móviles</span><span class="pill">Picor intenso</span><span class="pill">Aparición brusca</span></div>
+        <div class="urg u-md"><span class="dot"></span>Antihistamínicos — urgente si hay disnea</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/fungal/tinea-corporis-001.jpg" alt="Tiña dermatofitosis" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1626106752528-f5e8b75b1393?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-amber">Fúngica</span>
+        <div class="ctitle">Tiña (Dermatofitosis)</div>
+        <div class="cdesc">Lesión anular eritematosa con bordes activos y centro más claro. Afecta piel (corporis), uñas (unguium) y cuero cabelludo (capitis). Contagiosa.</div>
+        <div class="pills"><span class="pill">Lesión circular</span><span class="pill">Bordes elevados</span><span class="pill">Picor</span></div>
+        <div class="urg u-lo"><span class="dot"></span>Antifúngico tópico 4 semanas</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/pigment/vitiligo-hands-001.jpg" alt="Vitíligo manchas blancas" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-blue">Autoinmune</span>
+        <div class="ctitle">Vitíligo</div>
+        <div class="cdesc">Pérdida de melanocitos en parches blancos bien delimitados. Causa autoinmune. Más visible en piel oscura. Afecta cabello y mucosas en casos extensos.</div>
+        <div class="pills"><span class="pill">Manchas blancas</span><span class="pill">Bordes netos</span><span class="pill">Asintomático</span></div>
+        <div class="urg u-lo"><span class="dot"></span>Fototerapia UV — tacrolimus tópico</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/sebaceous/sebaceous-cyst-001.jpg" alt="Quiste sebáceo" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1609207529740-f58d1c059cb6?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-green">Benigno</span>
+        <div class="ctitle">Quiste Sebáceo (Epidérmico)</div>
+        <div class="cdesc">Quiste redondeado subcutáneo con punto negro central (poro). Blando, móvil, bien delimitado. Si se infecta: eritema, calor, dolor y fluctuación.</div>
+        <div class="pills"><span class="pill">Bulto redondeado</span><span class="pill">Punto negro central</span><span class="pill">Móvil</span></div>
+        <div class="urg u-lo"><span class="dot"></span>Extirpación electiva — drenaje si infectado</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/reactions/erythema-nodosum-001.jpg" alt="Eritema nodoso" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Inflamatorio</span>
+        <div class="ctitle">Eritema Nodoso</div>
+        <div class="cdesc">Nódulos eritematosos dolorosos en espinillas (pretibiales). Bilateral. Hipersensibilidad retardada asociada a infecciones, fármacos, sarcoidosis o EII.</div>
+        <div class="pills"><span class="pill">Nódulos pretibiales</span><span class="pill">Muy dolorosos</span><span class="pill">Fiebre</span></div>
+        <div class="urg u-md"><span class="dot"></span>Investigar causa — AINEs — reposo</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/infestations/scabies-burrows-001.jpg" alt="Sarna surcos" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Parasitaria</span>
+        <div class="ctitle">Sarna (Escabiosis)</div>
+        <div class="cdesc">Infestación por Sarcoptes scabiei. Surcos en espacios interdigitales, muñecas, axilas y genitales. Prurito nocturno intensísimo. Alta contagiosidad.</div>
+        <div class="pills"><span class="pill">Picor nocturno</span><span class="pill">Surcos interdigitales</span><span class="pill">Muy contagiosa</span></div>
+        <div class="urg u-hi"><span class="dot"></span>Permetrina o ivermectina — tratar contactos</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/ulcers/pressure-ulcer-003.jpg" alt="Úlcera por presión escara" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1582719471137-c3967ffb1c42?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Crónica</span>
+        <div class="ctitle">Úlcera por Presión (Escaras)</div>
+        <div class="cdesc">Lesión isquémica en zonas de apoyo. Estadios I (eritema) a IV (necrosis profunda). Sacro, talones y maléolos. Pacientes encamados. Prevención prioritaria.</div>
+        <div class="pills"><span class="pill">Necrosis tejido</span><span class="pill">Zonas de presión</span><span class="pill">Infección secundaria</span></div>
+        <div class="urg u-hi"><span class="dot"></span>Curas avanzadas — cambios posturales</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ INFLAMACIÓN -->
+<section class="sec" id="inflamacion">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:#fef9e7">🟡</div>
+    <div><h2>Inflamación, Edema y Tumefacción</h2><small>Hinchazón localizada, quistes, abscesos, bursitis y ganglios</small></div>
+  </div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/joint/gout-foot-001.jpg" alt="Gota articular pie" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Gota</span>
+        <div class="ctitle">Ataque Agudo de Gota</div>
+        <div class="cdesc">Inflamación agudísima en dedo gordo del pie (podagra). Piel roja brillante, caliente, tumefacta. Dolor máximo a las 12-24h. Hiperuricemia.</div>
+        <div class="pills"><span class="pill">Dolor nocturno súbito</span><span class="pill">Piel roja brillante</span><span class="pill">Calor intenso</span></div>
+        <div class="urg u-hi"><span class="dot"></span>AINEs — colchicina — dieta baja en purinas</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/vascular/leg-oedema-001.jpg" alt="Edema en piernas tobillos" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-blue">Edema</span>
+        <div class="ctitle">Edema en Piernas y Tobillos</div>
+        <div class="cdesc">Acumulación de líquido con signo de fóvea positivo (queda huella al presionar). Causas: insuficiencia cardíaca, renal, venosa crónica o fármacos.</div>
+        <div class="pills"><span class="pill">Fóvea positiva</span><span class="pill">Pesadez</span><span class="pill">Piel tensa y brillante</span></div>
+        <div class="urg u-md"><span class="dot"></span>Investigar causa — diuréticos si cardíaco</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/reactions/angioedema-lips-001.jpg" alt="Angioedema labios cara" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Urgencia</span>
+        <div class="ctitle">Angioedema</div>
+        <div class="cdesc">Edema profundo de labios, párpados, lengua o faringe. De aparición brusca. Puede comprometer la vía aérea. Asociado a alergias graves o IECAs.</div>
+        <div class="pills"><span class="pill">Hinchazón facial brusca</span><span class="pill">Dificultad tragar</span><span class="pill">Disnea</span></div>
+        <div class="urg u-hi"><span class="dot"></span>🚨 Emergencia — adrenalina IM — 112</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/bacterial/abscess-001.jpg" alt="Absceso cutáneo drenaje" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Absceso</span>
+        <div class="ctitle">Absceso Cutáneo</div>
+        <div class="cdesc">Colección de pus en tejido subcutáneo. Fluctuante al tacto, eritematoso, caliente y doloroso. Estafilococo áureo más frecuente. Requiere drenaje.</div>
+        <div class="pills"><span class="pill">Fluctuación al tacto</span><span class="pill">Calor local</span><span class="pill">Fiebre</span></div>
+        <div class="urg u-hi"><span class="dot"></span>Drenaje quirúrgico urgente</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/lymph/lymphadenopathy-neck-001.jpg" alt="Ganglios inflamados cuello" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-amber">Ganglios</span>
+        <div class="ctitle">Linfadenopatía Cervical</div>
+        <div class="cdesc">Agrandamiento de ganglios linfáticos. Reactivo a infección (blando, doloroso) o neoplásico (duro, indoloro, fijo). Evaluar tamaño, consistencia y duración.</div>
+        <div class="pills"><span class="pill">Bulto palpable</span><span class="pill">Fiebre</span><span class="pill">Sudoración nocturna</span></div>
+        <div class="urg u-md"><span class="dot"></span>Analítica — ecografía — valorar biopsia</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/tumours/lipoma-back-001.jpg" alt="Lipoma benigno" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-green">Benigno</span>
+        <div class="ctitle">Lipoma</div>
+        <div class="cdesc">Tumor benigno de tejido graso subcutáneo. Blando, móvil, bien delimitado, no doloroso. Crecimiento lento. Múltiple en lipomatosis. No requiere tratamiento generalmente.</div>
+        <div class="pills"><span class="pill">Masa blanda</span><span class="pill">Móvil</span><span class="pill">Indoloro</span></div>
+        <div class="urg u-lo"><span class="dot"></span>Extirpación electiva si molesta</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ OJOS -->
+<section class="sec" id="ojos">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:#eaf1f8">👁️</div>
+    <div><h2>Enfermedades Oculares</h2><small>Conjuntivitis, orzuelo, cataratas, glaucoma y patología orbitaria</small></div>
+  </div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/eye/conjunctivitis-bacterial-001.jpg" alt="Conjuntivitis bacteriana ojo rojo" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Infecciosa</span>
+        <div class="ctitle">Conjuntivitis Bacteriana</div>
+        <div class="cdesc">Ojo rojo con secreción purulenta amarilla-verdosa abundante. Párpados pegados al despertar. Muy contagiosa. No usar lentillas. Ambos ojos progresivamente.</div>
+        <div class="pills"><span class="pill">Secreción amarilla</span><span class="pill">Ojo rojo</span><span class="pill">Párpados pegados</span></div>
+        <div class="urg u-md"><span class="dot"></span>Colirios antibióticos 5-7 días</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/eye/stye-hordeolum-001.jpg" alt="Orzuelo hordeolum párpado" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-amber">Párpados</span>
+        <div class="ctitle">Orzuelo y Chalazión</div>
+        <div class="cdesc">Orzuelo: infección aguda de glándula palpebral, muy doloroso. Chalazión: quiste crónico e indoloro del meibomio. Ambos se tratan con calor local 4 veces al día.</div>
+        <div class="pills"><span class="pill">Bulto doloroso</span><span class="pill">Enrojecimiento</span><span class="pill">Lagrimeo</span></div>
+        <div class="urg u-lo"><span class="dot"></span>Calor local — colirio — drenaje si no resuelve</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/eye/subconjunctival-haemorrhage-001.jpg" alt="Hemorragia subconjuntival ojo" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Vascular</span>
+        <div class="ctitle">Hemorragia Subconjuntival</div>
+        <div class="cdesc">Mancha roja brillante en el blanco del ojo. Aspecto alarmante pero generalmente benigna y autolimitada (2-3 semanas). Causa: esfuerzo, tos, HTA o anticoagulantes.</div>
+        <div class="pills"><span class="pill">Mancha roja brillante</span><span class="pill">Sin dolor</span><span class="pill">Sin pérdida visual</span></div>
+        <div class="urg u-lo"><span class="dot"></span>Control tensión arterial — resolución sola</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/eye/periorbital-cellulitis-001.jpg" alt="Celulitis orbitaria párpado" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Urgencia</span>
+        <div class="ctitle">Celulitis Orbitaria</div>
+        <div class="cdesc">Infección grave del tejido retroorbitario. Párpado inflamado, proptosis (ojo que sobresale), dolor al mover el ojo, fiebre. Riesgo de ceguera y meningitis.</div>
+        <div class="pills"><span class="pill">Proptosis</span><span class="pill">Dolor movimiento ocular</span><span class="pill">Fiebre alta</span></div>
+        <div class="urg u-hi"><span class="dot"></span>🚨 Ingreso urgente — antibióticos IV — TC</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/eye/xanthelasma-001.jpg" alt="Xantelasma párpado colesterol" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-amber">Lipídico</span>
+        <div class="ctitle">Xantelasma Palpebral</div>
+        <div class="cdesc">Placas amarillentas planas en ángulo interno del párpado. Depósito de lípidos. Marcador de hipercolesterolemia. Riesgo cardiovascular. Análisis lipídico obligado.</div>
+        <div class="pills"><span class="pill">Placa amarilla párpado</span><span class="pill">Colesterol elevado</span><span class="pill">Asintomático</span></div>
+        <div class="urg u-lo"><span class="dot"></span>Perfil lipídico — estatinas — riesgo CV</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/eye/pterygium-001.jpg" alt="Pterigión córnea" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-amber">Degenerativo</span>
+        <div class="ctitle">Pterigión</div>
+        <div class="cdesc">Crecimiento de tejido fibrovascular triangular desde conjuntiva hacia la córnea. Asociado a exposición UV crónica. Puede afectar la visión si invade el eje visual.</div>
+        <div class="pills"><span class="pill">Membrana triangular</span><span class="pill">Irritación ocular</span><span class="pill">Visión borrosa</span></div>
+        <div class="urg u-lo"><span class="dot"></span>Gafas de sol — cirugía si avanza</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ BOCA / ORL -->
+<section class="sec" id="boca">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:#eafaf1">🦷</div>
+    <div><h2>Boca, Garganta y ORL</h2><small>Amigdalitis, aftas, candidiasis, otitis y lesiones orales</small></div>
+  </div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/oral/tonsillitis-exudate-001.jpg" alt="Amigdalitis estreptocócica exudado" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Bacteriana</span>
+        <div class="ctitle">Amigdalitis Estreptocócica</div>
+        <div class="cdesc">Exudado blanquecino en amígdalas inflamadas y rojas. Dolor de garganta intenso, fiebre alta, sin tos. Test rápido estreptococo positivo. Criterios de Centor.</div>
+        <div class="pills"><span class="pill">Exudado blanco</span><span class="pill">Fiebre >38.5°</span><span class="pill">Disfagia</span><span class="pill">Sin tos</span></div>
+        <div class="urg u-hi"><span class="dot"></span>Amoxicilina 10 días — analgesia</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/oral/aphthous-ulcer-001.jpg" alt="Afta bucal úlcera oral" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1609207529740-f58d1c059cb6?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-amber">Oral</span>
+        <div class="ctitle">Aftas Bucales</div>
+        <div class="cdesc">Úlceras ovaladas blancoamarillentas con halo rojo eritematoso. Muy dolorosas al comer y beber. Mucosa bucal, lengua. Idiopáticas, estrés o déficit de B12/hierro.</div>
+        <div class="pills"><span class="pill">Úlcera oval</span><span class="pill">Halo rojo</span><span class="pill">Dolor al comer</span></div>
+        <div class="urg u-lo"><span class="dot"></span>Colutorios — triamcinolona — B12</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/oral/oral-candidiasis-001.jpg" alt="Candidiasis oral muguet" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-purple">Fúngica</span>
+        <div class="ctitle">Candidiasis Oral (Muguet)</div>
+        <div class="cdesc">Placas blancas que se desprenden con espátula, dejando mucosa eritematosa. Causa: antibióticos recientes, inmunosupresión, corticoides inhalados o VIH.</div>
+        <div class="pills"><span class="pill">Placas blancas</span><span class="pill">Ardor bucal</span><span class="pill">Gusto alterado</span></div>
+        <div class="urg u-md"><span class="dot"></span>Nistatina oral — fluconazol si grave</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/oral/leukoplakia-001.jpg" alt="Leucoplasia oral premaligna" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1583912267550-d974498571b5?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Premaligna</span>
+        <div class="ctitle">Leucoplasia Oral</div>
+        <div class="cdesc">Mancha blanca en mucosa oral que no se desprende. Lesión premaligna. Asociada a tabaco y alcohol. La eritroplasia (roja) tiene mayor riesgo de malignizar.</div>
+        <div class="pills"><span class="pill">Placa blanca fija</span><span class="pill">No se desprende</span><span class="pill">Asintomática</span></div>
+        <div class="urg u-hi"><span class="dot"></span>Biopsia urgente — cese tabaco</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/ear/otitis-externa-001.jpg" alt="Otitis externa oído nadador" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1630591694498-3e02e38c9e63?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-amber">ORL</span>
+        <div class="ctitle">Otitis Externa ("Oído del Nadador")</div>
+        <div class="cdesc">Infección del conducto auditivo externo. Dolor intenso al tirar del pabellón auricular, prurito, exudado. Frecuente en verano tras baños. Pseudomonas.</div>
+        <div class="pills"><span class="pill">Otalgia severa</span><span class="pill">Tracción pabellón dolorosa</span><span class="pill">Exudado</span></div>
+        <div class="urg u-md"><span class="dot"></span>Gotas antibióticas-corticoides</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/viral/hand-foot-mouth-disease-001.jpg" alt="Enfermedad mano pie boca" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1561736778-92e52a7769ef?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Viral Pediátrica</span>
+        <div class="ctitle">Enfermedad Mano-Pie-Boca</div>
+        <div class="cdesc">Vesículas en palmas, plantas y úlceras dolorosas en boca. Coxsackievirus A16. Muy contagiosa en menores de 5 años. Autolimitada en 7-10 días.</div>
+        <div class="pills"><span class="pill">Vesículas palmares</span><span class="pill">Úlceras bucales</span><span class="pill">Fiebre</span></div>
+        <div class="urg u-md"><span class="dot"></span>Sintomático — aislamiento escolar</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ RESPIRATORIO -->
+<section class="sec" id="respiratorio">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:#eaf1f8">🫁</div>
+    <div><h2>Sistema Respiratorio</h2><small>Neumonía, asma, bronquitis, neumotórax y signos pulmonares</small></div>
+  </div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Chest_X-ray_pneumonia_NIH.jpg/640px-Chest_X-ray_pneumonia_NIH.jpg" alt="Neumonía radiografía tórax" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Neumonía</span>
+        <div class="ctitle">Neumonía — Rx de Tórax</div>
+        <div class="cdesc">Condensación en Rx. Fiebre alta, tos productiva con esputo, dolor pleurítico (empeora al respirar), disnea y crepitantes basales. Escala CURB-65 para ingreso.</div>
+        <div class="pills"><span class="pill">Fiebre >38°</span><span class="pill">Tos con esputo</span><span class="pill">Disnea</span><span class="pill">Crepitantes</span></div>
+        <div class="urg u-hi"><span class="dot"></span>Antibióticos — valorar ingreso hospitalario</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=640&q=80" alt="Inhalador asma broncoespasmo" loading="lazy"></div>
+      <div class="cb"><span class="tag t-blue">Asma</span>
+        <div class="ctitle">Crisis Asmática</div>
+        <div class="cdesc">Broncoespasmo reversible. Sibilancias audibles (pitos al respirar), disnea, tos nocturna. Grave: uso de músculos accesorios, incapaz de hablar frases completas.</div>
+        <div class="pills"><span class="pill">Sibilancias (pitos)</span><span class="pill">Disnea</span><span class="pill">Tos nocturna</span></div>
+        <div class="urg u-hi"><span class="dot"></span>Broncodilatador — urgencias si no mejora</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=640&q=80" alt="Test antígeno COVID gripe" loading="lazy"></div>
+      <div class="cb"><span class="tag t-red">Viral</span>
+        <div class="ctitle">COVID-19 y Gripe</div>
+        <div class="cdesc">Fiebre, mialgias intensas, tos seca. COVID: pérdida de olfato/gusto (anosmia) característica. Vigilar SatO2: si &lt;94% requiere atención urgente.</div>
+        <div class="pills"><span class="pill">Fiebre</span><span class="pill">Tos seca</span><span class="pill">Anosmia</span><span class="pill">Mialgia</span></div>
+        <div class="urg u-md"><span class="dot"></span>Aislamiento — vigilar saturación O₂</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Spontaneous_pneumothorax.jpg/640px-Spontaneous_pneumothorax.jpg" alt="Neumotórax radiografía" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Urgencia</span>
+        <div class="ctitle">Neumotórax Espontáneo</div>
+        <div class="cdesc">Aire en espacio pleural. Rx: línea pleural visible, pulmón colapsado. Inicio súbito: disnea, dolor pleurítico punzante, ausencia de murmullo vesicular unilateral.</div>
+        <div class="pills"><span class="pill">Disnea brusca</span><span class="pill">Dolor pleurítico</span><span class="pill">MV abolido</span></div>
+        <div class="urg u-hi"><span class="dot"></span>Urgencias — drenaje pleural</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ HUESOS -->
+<section class="sec" id="huesos">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:#f5eef8">🦴</div>
+    <div><h2>Huesos, Articulaciones y Músculos</h2><small>Artritis, fracturas, esguinces y patología musculoesquelética</small></div>
+  </div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/joint/rheumatoid-arthritis-hands-001.jpg" alt="Artritis reumatoide manos" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1582719471137-c3967ffb1c42?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-purple">Autoinmune</span>
+        <div class="ctitle">Artritis Reumatoide</div>
+        <div class="cdesc">Poliartritis simétrica de pequeñas articulaciones. Rigidez matutina >1h. Deformidades: desviación cubital de dedos, cuello de cisne, boutonnière. FR y Anti-CCP positivos.</div>
+        <div class="pills"><span class="pill">Sinovitis simétrica</span><span class="pill">Rigidez matutina</span><span class="pill">Deformidad dedos</span></div>
+        <div class="urg u-md"><span class="dot"></span>Reumatólogo — DMARDs precoces</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Osteoarthritis_x-ray.jpg/640px-Osteoarthritis_x-ray.jpg" alt="Artrosis rodilla radiografía" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-blue">Degenerativa</span>
+        <div class="ctitle">Artrosis de Rodilla</div>
+        <div class="cdesc">Pinzamiento articular y osteofitos en Rx. Dolor mecánico (empeora al caminar, mejora con reposo), crepitación audible y limitación de movimiento. Común en mayores.</div>
+        <div class="pills"><span class="pill">Dolor mecánico</span><span class="pill">Crepitación</span><span class="pill">Deformidad en varo</span></div>
+        <div class="urg u-lo"><span class="dot"></span>Fisioterapia — AINEs — prótesis</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=640&q=80" alt="Esguince tobillo hinchazón" loading="lazy"></div>
+      <div class="cb"><span class="tag t-amber">Traumatismo</span>
+        <div class="ctitle">Esguince de Tobillo</div>
+        <div class="cdesc">Lesión ligamentosa por inversión brusca. Edema inmediato, equimosis y dolor a la palpación maleolar. Regla de Ottawa para indicar Rx. Grados I-III.</div>
+        <div class="pills"><span class="pill">Edema inmediato</span><span class="pill">Equimosis</span><span class="pill">Dolor maleolar</span></div>
+        <div class="urg u-md"><span class="dot"></span>PRICE — Rx si criterios de Ottawa</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=640&q=80" alt="Fractura hueso yeso" loading="lazy"></div>
+      <div class="cb"><span class="tag t-red">Fractura</span>
+        <div class="ctitle">Fractura Ósea</div>
+        <div class="cdesc">Dolor intenso, deformidad visible, imposibilidad de apoyar o mover. En muñeca (Colles): deformidad en "tenedor". En cadera (anciano): rotación externa y acortamiento.</div>
+        <div class="pills"><span class="pill">Deformidad visible</span><span class="pill">Dolor intenso</span><span class="pill">Impotencia funcional</span></div>
+        <div class="urg u-hi"><span class="dot"></span>Urgencias — Rx — inmovilización</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/joint/gout-tophi-001.jpg" alt="Tofos gota articular crónica" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-amber">Gota Crónica</span>
+        <div class="ctitle">Gota Tofácea Crónica</div>
+        <div class="cdesc">Depósitos de cristales de urato (tofos) en articulaciones, orejas y tendones. Nódulos blanquecinos. Indica hiperuricemia crónica mal controlada. Destrucción articular.</div>
+        <div class="pills"><span class="pill">Nódulos blanquecinos</span><span class="pill">Articulaciones deformadas</span><span class="pill">Uricemia alta</span></div>
+        <div class="urg u-md"><span class="dot"></span>Alopurinol crónico — dieta baja purinas</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/joint/ganglion-cyst-wrist-001.jpg" alt="Quiste ganglionar muñeca" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1609207529740-f58d1c059cb6?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-green">Benigno</span>
+        <div class="ctitle">Quiste Ganglionar (Muñeca)</div>
+        <div class="cdesc">Quiste sinovial en dorso de muñeca o pie. Blando o firme, translúcido. Puede variar de tamaño. Generalmente asintomático pero puede causar molestia o compresión.</div>
+        <div class="pills"><span class="pill">Bulto dorso muñeca</span><span class="pill">Translúcido</span><span class="pill">Tamaño variable</span></div>
+        <div class="urg u-lo"><span class="dot"></span>Aspiración — cirugía si sintomático</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ ABDOMEN -->
+<section class="sec" id="abdomen">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:#eafaf1">🟢</div>
+    <div><h2>Patología Abdominal y Digestiva</h2><small>Hígado, colon, hernias, vías biliares y signos abdominales</small></div>
+  </div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/systemic/jaundice-sclera-001.jpg" alt="Ictericia ojos piel amarilla" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-amber">Hepático</span>
+        <div class="ctitle">Ictericia</div>
+        <div class="cdesc">Coloración amarillenta de piel y escleróticas por hiperbilirrubinemia. Orina color coca-cola, heces pálidas como arcilla, prurito intenso. Causas: hepatitis, obstrucción biliar.</div>
+        <div class="pills"><span class="pill">Piel y ojos amarillos</span><span class="pill">Orina oscura</span><span class="pill">Prurito</span></div>
+        <div class="urg u-hi"><span class="dot"></span>Analítica urgente — ecografía abdominal</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=640&q=80" alt="Hernia inguinal abdomen" loading="lazy"></div>
+      <div class="cb"><span class="tag t-blue">Hernia</span>
+        <div class="ctitle">Hernia Inguinal</div>
+        <div class="cdesc">Protrusión de contenido abdominal por orificio inguinal. Bulto en ingle que aumenta de pie, al toser o hacer esfuerzo. Riesgo de atascamiento y estrangulación.</div>
+        <div class="pills"><span class="pill">Bulto inguinal</span><span class="pill">Aumenta al toser</span><span class="pill">Dolor con esfuerzo</span></div>
+        <div class="urg u-md"><span class="dot"></span>Cirugía electiva — urgente si irreducible</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?w=640&q=80" alt="Hemorragia rectal hemorroides" loading="lazy"></div>
+      <div class="cb"><span class="tag t-amber">Digestivo</span>
+        <div class="ctitle">Hemorroides</div>
+        <div class="cdesc">Dilatación de plexos venosos hemorroidales. Sangrado rojo brillante al defecar (en papel o en chorro), picor anal, prolapso de tejido. Internas o externas.</div>
+        <div class="pills"><span class="pill">Sangrado rectal rojo</span><span class="pill">Prurito anal</span><span class="pill">Prolapso</span></div>
+        <div class="urg u-lo"><span class="dot"></span>Dieta con fibra — ligadura — cirugía</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1583912267550-d974498571b5?w=640&q=80" alt="Abdomen distendido ascitis" loading="lazy"></div>
+      <div class="cb"><span class="tag t-blue">Hepático</span>
+        <div class="ctitle">Ascitis (Abdomen Distendido)</div>
+        <div class="cdesc">Acumulación de líquido en la cavidad peritoneal. Abdomen distendido, matidez desplazable al cambiar posición, signo de la ola. Cirrosis, neoplasia o IC.</div>
+        <div class="pills"><span class="pill">Abdomen distendido</span><span class="pill">Matidez desplazable</span><span class="pill">Signo de la ola</span></div>
+        <div class="urg u-md"><span class="dot"></span>Ecografía — paracentesis diagnóstica</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ NEUROLÓGICO -->
+<section class="sec" id="neurologico">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:#f5eef8">🧠</div>
+    <div><h2>Síntomas Neurológicos</h2><small>Cefaleas, parálisis facial, meningitis, vértigo y neuropatías</small></div>
+  </div>
+  <div class="alert">
+    <span class="ico">🚨</span>
+    <div><h3>Código ICTUS — Llamar al 112 inmediatamente</h3>
+    <p>Test FAST: Face (asimetría facial brusca), Arm (debilidad brazo), Speech (habla ininteligible), Time (actuar ya). Ventana terapéutica 4.5h. Cada minuto = 2 millones de neuronas perdidas.</p></div>
+  </div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/neurology/bells-palsy-001.jpg" alt="Parálisis de Bell facial" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Neurológico</span>
+        <div class="ctitle">Parálisis Facial de Bell</div>
+        <div class="cdesc">Parálisis periférica del VII par. Asimetría facial completa incluyendo frente (clave para diferenciar del ictus, que preserva la frente). Origen viral. Inicio súbito.</div>
+        <div class="pills"><span class="pill">Asimetría facial</span><span class="pill">No puede cerrar ojo</span><span class="pill">Boca desviada</span></div>
+        <div class="urg u-hi"><span class="dot"></span>Corticoides en 72h — descartar ictus</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=640&q=80" alt="Migraña cefalea aura visual" loading="lazy"></div>
+      <div class="cb"><span class="tag t-purple">Cefalea</span>
+        <div class="ctitle">Migraña con Aura</div>
+        <div class="cdesc">Cefalea pulsátil unilateral precedida de aura visual (luces centelleantes, escotoma). Fotofobia, fonofobia, náuseas. 4-72h de duración. Criterios IHS.</div>
+        <div class="pills"><span class="pill">Aura visual</span><span class="pill">Hemicránea pulsátil</span><span class="pill">Fotofobia</span></div>
+        <div class="urg u-md"><span class="dot"></span>Triptanes — profilaxis si >4 crisis/mes</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=640&q=80" alt="Meningitis rigidez nucal" loading="lazy"></div>
+      <div class="cb"><span class="tag t-red">Emergencia</span>
+        <div class="ctitle">Meningitis Bacteriana</div>
+        <div class="cdesc">Tríada: rigidez de nuca + fiebre alta + cefalea "la peor de mi vida". Fotofobia, vómitos en escopetazo, petequias. Signos de Kernig y Brudzinski positivos.</div>
+        <div class="pills"><span class="pill">Rigidez nucal</span><span class="pill">Kernig +</span><span class="pill">Petequias</span><span class="pill">Fotofobia</span></div>
+        <div class="urg u-hi"><span class="dot"></span>🚨 Antibióticos IV inmediatos — no esperar</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/viral/herpes-zoster-forehead-001.jpg" alt="Herpes zóster oftálmico frente" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Urgencia</span>
+        <div class="ctitle">Herpes Zóster Oftálmico</div>
+        <div class="cdesc">Vesículas en frente y párpado (distribución V1 del trigémino). Signo de Hutchinson: vesículas en punta nasal = afectación corneal inminente. Riesgo de ceguera.</div>
+        <div class="pills"><span class="pill">Vesículas en frente</span><span class="pill">Dolor ocular</span><span class="pill">Signo de Hutchinson</span></div>
+        <div class="urg u-hi"><span class="dot"></span>Antivirales urgentes — oftalmólogo hoy</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=640&q=80" alt="Parkinson temblor neurológico" loading="lazy"></div>
+      <div class="cb"><span class="tag t-blue">Neurodegenerativo</span>
+        <div class="ctitle">Enfermedad de Parkinson</div>
+        <div class="cdesc">Tríada clásica: temblor de reposo "cuenta monedas", rigidez en rueda dentada y bradicinesia. Marcha festinante, facies hipomímica ("cara de máscara"), micrografía.</div>
+        <div class="pills"><span class="pill">Temblor en reposo</span><span class="pill">Rigidez</span><span class="pill">Bradicinesia</span></div>
+        <div class="urg u-lo"><span class="dot"></span>Neurólogo — levodopa — fisioterapia</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ CARDIOVASCULAR -->
+<section class="sec" id="cardiovascular">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:#fdf0ef">❤️</div>
+    <div><h2>Sistema Cardiovascular y Vascular</h2><small>TVP, varices, isquemia, cianosis y signos cardíacos</small></div>
+  </div>
+  <div class="alert">
+    <span class="ico">❤️</span>
+    <div><h3>Infarto de Miocardio — Llamar al 112 sin esperar</h3>
+    <p>Dolor opresivo centrotorácico irradiado a brazo izquierdo, mandíbula o espalda con sudoración fría, náuseas o disnea brusca. En mujeres y diabéticos puede presentarse solo como cansancio o dolor abdominal.</p></div>
+  </div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/vascular/dvt-leg-swelling-001.jpg" alt="Trombosis venosa profunda pierna" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Vascular</span>
+        <div class="ctitle">Trombosis Venosa Profunda (TVP)</div>
+        <div class="cdesc">Trombosis en venas profundas de la pierna. Edema unilateral, eritema, calor y dolor a la palpación gemelar. Riesgo de tromboembolismo pulmonar fatal.</div>
+        <div class="pills"><span class="pill">Edema unilateral</span><span class="pill">Dolor gemelar</span><span class="pill">Calor local</span></div>
+        <div class="urg u-hi"><span class="dot"></span>Anticoagulación urgente — Eco-Doppler</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/vascular/varicose-veins-001.jpg" alt="Varices piernas insuficiencia venosa" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-blue">Vascular</span>
+        <div class="ctitle">Varices e Insuficiencia Venosa</div>
+        <div class="cdesc">Dilatación venosa superficial tortuosa. Pesadez y edema vespertino que mejora al elevar las piernas, picor, cambios tróficos (piel marrón). Úlceras varicosas.</div>
+        <div class="pills"><span class="pill">Venas dilatadas</span><span class="pill">Pesadez</span><span class="pill">Edema vespertino</span></div>
+        <div class="urg u-lo"><span class="dot"></span>Medias compresión — cirugía vascular</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/vascular/cyanosis-fingernails-001.jpg" alt="Cianosis uñas labios hipoxia" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Signo Clínico</span>
+        <div class="ctitle">Cianosis</div>
+        <div class="cdesc">Coloración azul-violácea de labios, uñas o piel. Indica baja saturación de oxígeno (&lt;85% hemoglobina oxigenada). Signo de gravedad cardiopulmonar. Evaluar SatO2.</div>
+        <div class="pills"><span class="pill">Color azul-violáceo</span><span class="pill">SatO2 baja</span><span class="pill">Disnea</span></div>
+        <div class="urg u-hi"><span class="dot"></span>🚨 Urgencias — oxigenoterapia inmediata</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/vascular/raynaud-phenomenon-001.jpg" alt="Fenómeno de Raynaud dedos" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-blue">Vascular</span>
+        <div class="ctitle">Fenómeno de Raynaud</div>
+        <div class="cdesc">Vasoespasmo digital desencadenado por frío o estrés. Trifásico: palidez → cianosis → eritema doloroso. Primario o secundario a esclerodermia, lupus u otras.</div>
+        <div class="pills"><span class="pill">Dedos blancos con frío</span><span class="pill">Cianosis</span><span class="pill">Eritema al calentar</span></div>
+        <div class="urg u-lo"><span class="dot"></span>Nifedipino — guantes — descartar secundario</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/vascular/leg-ulcer-venous-001.jpg" alt="Úlcera venosa pierna" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Úlcera Vascular</span>
+        <div class="ctitle">Úlcera Venosa de Pierna</div>
+        <div class="cdesc">Úlcera en zona maleolar medial por insuficiencia venosa crónica. Bordes irregulares, exudativa, indolora o poco dolorosa. Piel perilesional lipodermatosclerótica.</div>
+        <div class="pills"><span class="pill">Zona maleolar</span><span class="pill">Exudativa</span><span class="pill">Piel marrón</span></div>
+        <div class="urg u-md"><span class="dot"></span>Vendaje compresivo — curas avanzadas</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ PEDIÁTRICO -->
+<section class="sec" id="pediatrico">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:#eafaf1">👶</div>
+    <div><h2>Patología Pediátrica</h2><small>Exantemas, fiebres, vasculitis y enfermedades propias de niños</small></div>
+  </div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/viral/chickenpox-varicella-001.jpg" alt="Varicela vesículas niño" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1567593810070-7a3d471af022?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Viral</span>
+        <div class="ctitle">Varicela (Chickenpox)</div>
+        <div class="cdesc">Exantema vesiculoso pruriginoso con estadios simultáneos: máculas, pápulas, vesículas "gota de rocío" y costras. Alta contagiosidad. Prevención con vacuna.</div>
+        <div class="pills"><span class="pill">Vesículas "gota rocío"</span><span class="pill">Prurito intenso</span><span class="pill">Estadios simultáneos</span></div>
+        <div class="urg u-lo"><span class="dot"></span>Aislamiento — antihistamínicos — nunca AAS</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/bacterial/scarlet-fever-rash-001.jpg" alt="Escarlatina exantema niño" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1561736778-92e52a7769ef?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Bacteriana</span>
+        <div class="ctitle">Escarlatina</div>
+        <div class="cdesc">Exantema micropapular eritematoso como "papel de lija" al tacto. Lengua en fresa, inicio en tronco, respeta región perioral. Líneas de Pastia. Estreptococo grupo A.</div>
+        <div class="pills"><span class="pill">Piel "papel de lija"</span><span class="pill">Lengua en fresa</span><span class="pill">Angina febril</span></div>
+        <div class="urg u-hi"><span class="dot"></span>Amoxicilina 10 días</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/viral/measles-koplik-spots-001.jpg" alt="Sarampión manchas Koplik" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1630591694498-3e02e38c9e63?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Viral</span>
+        <div class="ctitle">Sarampión</div>
+        <div class="cdesc">Exantema maculopapular cefalocaudal. Manchas de Koplik (puntitos blancos en mucosa oral) son patognomónicas. Pródromo: tos, coriza y conjuntivitis (las 3 "C"). Notificación obligatoria.</div>
+        <div class="pills"><span class="pill">Manchas de Koplik</span><span class="pill">Exantema cefalocaudal</span><span class="pill">Las 3 C</span></div>
+        <div class="urg u-hi"><span class="dot"></span>Notificación obligatoria — aislamiento</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/purpura/meningococcal-purpura-001.jpg" alt="Púrpura meningocócica test vaso" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">EMERGENCIA</span>
+        <div class="ctitle">Púrpura Meningocócica</div>
+        <div class="cdesc">Petequias y manchas purpúricas que NO desaparecen con presión (test del vaso de cristal). Sepsis meningocócica. Alta mortalidad. Actuar sin esperar resultados.</div>
+        <div class="pills"><span class="pill">Petequias no blanqueables</span><span class="pill">Fiebre alta</span><span class="pill">Deterioro rápido</span></div>
+        <div class="urg u-hi"><span class="dot"></span>🚨 112 — penicilina IV inmediata</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/viral/roseola-infantum-001.jpg" alt="Roséola exantema súbito bebé" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-amber">Viral</span>
+        <div class="ctitle">Roséola (Exantema Súbito)</div>
+        <div class="cdesc">Fiebre alta 3-5 días; al desaparecer la fiebre aparece exantema rosado en tronco. Herpesvirus 6. Niños 6-24 meses. Puede desencadenar convulsiones febriles.</div>
+        <div class="pills"><span class="pill">Fiebre alta 3-5 días</span><span class="pill">Exantema al defenescer</span><span class="pill">Irritabilidad</span></div>
+        <div class="urg u-lo"><span class="dot"></span>Sintomático — antitérmicos — autolimitado</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/kawasaki/kawasaki-lips-001.jpg" alt="Kawasaki labios rojos niño" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1582719471137-c3967ffb1c42?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Vasculitis</span>
+        <div class="ctitle">Enfermedad de Kawasaki</div>
+        <div class="cdesc">Vasculitis de medianos vasos. Fiebre >5 días + 4 de 5: exantema, conjuntivitis bilateral, labios/lengua en fresa, eritema palmoplantar, adenopatía cervical. Riesgo coronario.</div>
+        <div class="pills"><span class="pill">Fiebre >5 días</span><span class="pill">Labios y lengua en fresa</span><span class="pill">Conjuntivitis bilateral</span></div>
+        <div class="urg u-hi"><span class="dot"></span>IGIV + aspirina — ecocardiograma urgente</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ ENDOCRINO -->
+<section class="sec" id="endocrino">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:#eaf1f8">💉</div>
+    <div><h2>Endocrinología y Metabolismo</h2><small>Diabetes, tiroides y alteraciones hormonales visibles</small></div>
+  </div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/ulcers/diabetic-foot-ulcer-001.jpg" alt="Úlcera pie diabético neuropático" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-amber">Diabetes</span>
+        <div class="ctitle">Pie Diabético — Úlcera Neuropática</div>
+        <div class="cdesc">Úlcera plantar indolora por neuropatía diabética. Bordes bien definidos "sacabocados", fondo limpio o con tejido necrótico. Alta tasa de infección y amputación sin tratamiento.</div>
+        <div class="pills"><span class="pill">Úlcera plantar</span><span class="pill">Sin dolor (neuropatía)</span><span class="pill">Bordes definidos</span></div>
+        <div class="urg u-hi"><span class="dot"></span>Equipo multidisciplinar — control glucémico</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/metabolic/acanthosis-nigricans-neck-001.jpg" alt="Acantosis nigricans cuello" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-amber">Metabólico</span>
+        <div class="ctitle">Acantosis Nigricans</div>
+        <div class="cdesc">Hiperpigmentación aterciopelada de aspecto sucio en cuello, axilas e ingles. Marcador de resistencia a la insulina, obesidad o —más raramente— neoplasia interna.</div>
+        <div class="pills"><span class="pill">Piel oscura aterciopelada</span><span class="pill">Pliegues y cuello</span><span class="pill">Resistencia insulina</span></div>
+        <div class="urg u-md"><span class="dot"></span>Glucemia — insulinemia — descartar neoplasia</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/thyroid/goitre-neck-001.jpg" alt="Bocio tiroides cuello" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1609207529740-f58d1c059cb6?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-blue">Tiroides</span>
+        <div class="ctitle">Bocio (Agrandamiento Tiroideo)</div>
+        <div class="cdesc">Aumento visible de la glándula tiroides en la parte anterior del cuello. Puede ser hipo, hiper o eutiroideo. Si comprime: disfagia o disfonía. Nódulo: evaluar malignidad.</div>
+        <div class="pills"><span class="pill">Masa cervical anterior</span><span class="pill">Disfagia</span><span class="pill">Disfonía</span></div>
+        <div class="urg u-md"><span class="dot"></span>TSH — ecografía — PAAF si nódulo</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/systemic/pretibial-myxoedema-001.jpg" alt="Mixedema pretibial hipotiroidismo" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-purple">Tiroides</span>
+        <div class="ctitle">Mixedema Pretibial (Graves)</div>
+        <div class="cdesc">Engrosamiento de piel en espinillas, de aspecto de "piel de naranja". Asociado a enfermedad de Graves (hipertiroidismo autoinmune). Junto con exoftalmos y bocio.</div>
+        <div class="pills"><span class="pill">Piel engrosada espinillas</span><span class="pill">Aspecto "piel naranja"</span><span class="pill">Hipertiroidismo</span></div>
+        <div class="urg u-md"><span class="dot"></span>TSH — T3/T4 — endocrinólogo</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ INFECTOLOGÍA -->
+<section class="sec" id="infectologia">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:#fdf0ef">🦠</div>
+    <div><h2>Enfermedades Infecciosas y Exantemas</h2><small>ITS, infecciones sistémicas, Lyme, dengue y fiebres</small></div>
+  </div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/bacterial/erythema-migrans-lyme-001.jpg" alt="Eritema migrans Lyme garrapata" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-green">Lyme</span>
+        <div class="ctitle">Eritema Migrans (Enfermedad de Lyme)</div>
+        <div class="cdesc">Lesión anular en "diana" de bordes rojos que se expande tras picadura de garrapata. Sin tratamiento: artritis, carditis y neuroborreliosis. Antecedente de zona boscosa.</div>
+        <div class="pills"><span class="pill">Lesión en diana</span><span class="pill">Se expande</span><span class="pill">Fiebre — artralgias</span></div>
+        <div class="urg u-hi"><span class="dot"></span>Doxiciclina 3 semanas — notificación</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/viral/mononucleosis-throat-001.jpg" alt="Mononucleosis infecciosa EBV" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1583912267550-d974498571b5?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-purple">EBV</span>
+        <div class="ctitle">Mononucleosis Infecciosa</div>
+        <div class="cdesc">Faringitis exudativa pseudomembranosa, fiebre, adenopatías cervicales y esplenomegalia. Virus Epstein-Barr. NO dar amoxicilina (causa exantema maculopapular generalizado).</div>
+        <div class="pills"><span class="pill">Faringitis exudativa</span><span class="pill">Adenopatías</span><span class="pill">Esplenomegalia</span></div>
+        <div class="urg u-md"><span class="dot"></span>Reposo — evitar amoxicilina — no deporte</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/std/syphilis-chancre-001.jpg" alt="Sífilis chancro primario" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">ITS</span>
+        <div class="ctitle">Sífilis Primaria — Chancro</div>
+        <div class="cdesc">Úlcera indurada, de bordes nítidos, indolora con adenopatía regional. Altamente infecciosa. Treponema pallidum. Serología positiva. Importantísima la notificación.</div>
+        <div class="pills"><span class="pill">Úlcera indolora</span><span class="pill">Bordes indurados</span><span class="pill">Adenopatía regional</span></div>
+        <div class="urg u-hi"><span class="dot"></span>Penicilina G benzatina — notificación</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/viral/dengue-rash-001.jpg" alt="Dengue exantema fiebre tropical" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-amber">Tropical</span>
+        <div class="ctitle">Dengue — Exantema</div>
+        <div class="cdesc">Fiebre alta bifásica, cefalea retrocular intensa, mialgias "rompehuesos", exantema. "Islas de piel sana en mar de eritema". Trombocitopenia. Antecedente de viaje tropical.</div>
+        <div class="pills"><span class="pill">Fiebre bifásica</span><span class="pill">Dolor retrocular</span><span class="pill">Exantema con islas</span></div>
+        <div class="urg u-hi"><span class="dot"></span>Vigilar plaquetas — hidratación — sin AINEs</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/std/condylomata-acuminata-001.jpg" alt="Condilomas acuminados VPH" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-amber">ITS</span>
+        <div class="ctitle">Condilomas Acuminados (VPH)</div>
+        <div class="cdesc">Verrugas genitales por VPH 6 y 11. Vegetaciones en "coliflor". No oncogénicas, pero transmiten el virus. Prevención con vacuna VPH. Muy contagiosas.</div>
+        <div class="pills"><span class="pill">Lesiones vegetantes</span><span class="pill">Aspecto coliflor</span><span class="pill">Indoloras</span></div>
+        <div class="urg u-md"><span class="dot"></span>Crioterapia — imiquimod — seguimiento</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/viral/mpox-lesions-001.jpg" alt="Mpox viruela del mono pústulas" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1626106752528-f5e8b75b1393?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Viral</span>
+        <div class="ctitle">Mpox (Viruela del Mono)</div>
+        <div class="cdesc">Pústulas umbilicadas todas en el mismo estadio evolutivo en cara, palmas, plantas y genitales. Fiebre y adenopatías previas. Transmisión por contacto íntimo prolongado.</div>
+        <div class="pills"><span class="pill">Pústulas único estadio</span><span class="pill">Adenopatías</span><span class="pill">Fiebre previa</span></div>
+        <div class="urg u-hi"><span class="dot"></span>Notificación — aislamiento — tecovirimat</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ URGENCIAS -->
+<section class="sec" id="urgencias">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:#fdf0ef">🚨</div>
+    <div><h2>Urgencias y Emergencias Médicas</h2><small>Signos de alarma que requieren atención inmediata — llame al 112</small></div>
+  </div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=640&q=80" alt="Anafilaxia adrenalina urgencia" loading="lazy"></div>
+      <div class="cb"><span class="tag t-red">Anafilaxia</span>
+        <div class="ctitle">Reacción Anafiláctica Grave</div>
+        <div class="cdesc">Urticaria generalizada + angioedema + broncoespasmo + hipotensión en minutos tras exposición a alérgeno. Adrenalina 0.5mg IM cara anterolateral del muslo. Llamar al 112.</div>
+        <div class="pills"><span class="pill">Urticaria generalizada</span><span class="pill">Stridor/sibilancias</span><span class="pill">Hipotensión</span></div>
+        <div class="urg u-hi"><span class="dot"></span>🚨 Adrenalina IM — posición Trendelenburg — 112</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/purpura/sepsis-mottling-001.jpg" alt="Sepsis piel moteada livedo" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Sepsis</span>
+        <div class="ctitle">Signos de Sepsis — Piel Moteada</div>
+        <div class="cdesc">Patrón moteado (livedo reticularis) indica mala perfusión periférica en sepsis. Junto con fiebre + taquicardia + confusión = criterios qSOFA. Mortalidad del 30-40%.</div>
+        <div class="pills"><span class="pill">Piel moteada</span><span class="pill">Confusión</span><span class="pill">Taquicardia</span><span class="pill">Extremidades frías</span></div>
+        <div class="urg u-hi"><span class="dot"></span>🚨 Código sepsis — antibióticos en 1 hora</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/purpura/meningococcal-petechiae-001.jpg" alt="Meningococcemia púrpura fulminante" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1582719471137-c3967ffb1c42?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Meningocócica</span>
+        <div class="ctitle">Púrpura Fulminante Meningocócica</div>
+        <div class="cdesc">Petequias que se fusionan en horas formando púrpura extensa. Test del vaso: NO blanquean. CID. Necrosis de extremidades. La forma más fulminante de sepsis bacteriana.</div>
+        <div class="pills"><span class="pill">Púrpura confluente</span><span class="pill">Necrosis</span><span class="pill">Shock séptico</span></div>
+        <div class="urg u-hi"><span class="dot"></span>🚨 EMERGENCIA ABSOLUTA — penicilina IV ya</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=640&q=80" alt="Quemadura grave escaldadura" loading="lazy"></div>
+      <div class="cb"><span class="tag t-red">Quemaduras</span>
+        <div class="ctitle">Quemaduras — Clasificación</div>
+        <div class="cdesc">1°: eritema. 2° superficial: ampollas dolorosas. 2° profunda: piel pálida-blanquecina. 3°: necrosis indolora (nervi destruidos). Regla de los 9 para calcular extensión.</div>
+        <div class="pills"><span class="pill">Grado 1: eritema</span><span class="pill">Grado 2: ampollas</span><span class="pill">Grado 3: necrosis</span></div>
+        <div class="urg u-hi"><span class="dot"></span>Urgencias si &gt;10% SCQ, cara, manos o vías resp.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://www.dermnetnz.org/assets/Uploads/vascular/acute-limb-ischaemia-001.jpg" alt="Isquemia aguda extremidad" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=640&q=80'"></div>
+      <div class="cb"><span class="tag t-red">Isquemia Aguda</span>
+        <div class="ctitle">Isquemia Aguda de Extremidades</div>
+        <div class="cdesc">Las 6 "P": Pain (dolor), Pallor (palidez), Pulselessness (sin pulso), Paresthesia, Paralysis, Poikilothermia (pie frío). Emergencia quirúrgica vascular. Ventana &lt;6h.</div>
+        <div class="pills"><span class="pill">Pie frío y pálido</span><span class="pill">Sin pulso distal</span><span class="pill">Dolor intenso</span></div>
+        <div class="urg u-hi"><span class="dot"></span>🚨 Emergencia quirúrgica vascular inmediata</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?w=640&q=80" alt="Mordedura herida animal" loading="lazy"></div>
+      <div class="cb"><span class="tag t-red">Traumatismo</span>
+        <div class="ctitle">Mordedura Animal / Humana</div>
+        <div class="cdesc">Alto riesgo infeccioso (Pasteurella, Capnocytophaga, anaerobios). Lavar abundantemente con agua y jabón. Amoxicilina-clavulánico. Evaluar rabia y profilaxis antitetánica.</div>
+        <div class="pills"><span class="pill">Punción profunda</span><span class="pill">Infección rápida</span><span class="pill">Lavar inmediatamente</span></div>
+        <div class="urg u-hi"><span class="dot"></span>Antibióticos — tétanos — valorar rabia</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="tip">
+    <strong>Cómo usar esta guía con tu IA médica:</strong> Describe lo que ves con el mayor detalle posible: localización exacta, color, tamaño aproximado, tiempo de evolución, síntomas acompañantes (fiebre, dolor, picor), factores que mejoran o empeoran, y cualquier tratamiento ya probado. Cuanta más información proporciones, más preciso será el diagnóstico diferencial que te ofrezca la IA.
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <strong>Referencia Visual Médica Completa — Entrenamiento de IA Diagnóstica</strong><br>
+  Imágenes procedentes de DermNet NZ (Creative Commons) e Unsplash (licencia libre).<br>
+  Recurso educativo. No reemplaza la evaluación médica profesional.<br>
+  Emergencias: <strong>112</strong> · Diseñado para Chatbase / LLM Medical AI Training
+</footer>
+
+<script>
+// Lazy load con fade-in
+document.querySelectorAll('.img-wrap img').forEach(img => {
+  if (img.complete) {
+    img.classList.add('loaded');
+  } else {
+    img.addEventListener('load', () => img.classList.add('loaded'));
+  }
+});
+</script>
+
+</body>
+</html>
